@@ -58,7 +58,7 @@ app.get("/getProductList", async (req, res) => {
     var db = client.db("idhardekho");
 
     db.collection("Product").find().toArray(function(err, result) {
-      console.log("here",err,result);
+      //console.log("here",err,result);
       if (err) throw err;
       res.send(result);
       client.close();
@@ -80,7 +80,7 @@ app.get("/getProductListById", async (req, res) => {
     db.collection("Product").findOne({_id:_id},(function(err, result) {
       //console.log("here",err,result);
       if (err) throw err;
-      console.log("123",result);
+      //console.log("123",result);
       res.send(result);
       client.close();
     }));
