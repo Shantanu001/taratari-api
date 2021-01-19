@@ -12,14 +12,14 @@ const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://Shantanu:bb0pD4SFebUd72gd@cluster0-fzxvj.mongodb.net/<dbname>?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true });
 var ObjectId = require('mongodb').ObjectId; 
-var cors = require('cors')
+// var cors = require('cors')
 var bodyParser = require('body-parser')
 
 var jsonParser = bodyParser.json({limit: '50mb'})
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
-app.use(cors())
+// app.use(cors())
 
 // client.connect(err => {
 //   const collection = client.db("test").collection("devices");
@@ -33,20 +33,10 @@ let options = {
 };
 let geoCoder = nodeGeocoder(options);
 
-// app.use((req, res, next) => {
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-
-//     // Request methods you wish to allow
-//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-//     // Request headers you wish to allow
-//     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-//     // Set to true if you need the website to include cookies in the requests sent
-//     // to the API (e.g. in case you use sessions)
-//     res.setHeader('Access-Control-Allow-Credentials', true);
-//   next();
-// });
+app.use((req, res, next) => {	// app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");	//   res.setHeader('Access-Control-Allow-Origin', '*');
+  next();	
+});
 
 app.get("/getLocation", async (req, res) => {
   // let requestPromise = Util.promisify(Request);
