@@ -58,7 +58,7 @@ app.get("/getLocation", async (req, res) => {
     // res.send(location);
 });
 
-app.get("/getProductList", async (req, res) => {
+app.get("/getProductList",(req, res) => {
   MongoClient.connect(uri,{
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -66,7 +66,7 @@ app.get("/getProductList", async (req, res) => {
     if (err) throw err;
     var db = client.db("idhardekho");
 
-    db.collection("Product").find().toArray(function(err, result) {
+    db.collection("Product").find({}).toArray(function(err, result) {
       //console.log("here",err,result);
       if (err) throw err;
       res.send(result);
@@ -93,6 +93,27 @@ app.get("/getProductListById", async (req, res) => {
       res.send(result);
       client.close();
     }));
+  });
+});
+
+app.get("/getProductListByCategory", (req, res) => {
+  //console.log(req);
+  //res.send({"data":req.query._id});
+  let category = req.query.category;
+  console.log("22",category);
+  MongoClient.connect(uri,{
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  },function(err, client) {
+    if (err) throw err;
+    var db = client.db("idhardekho");
+    
+    db.collection("Product").find({Category:category}).toArray(function(err, result) {
+      //console.log("here",err,result);
+      if (err) throw err;
+      res.send(result);
+      client.close();
+    });
   });
 });
 
