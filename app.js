@@ -34,6 +34,7 @@ let options = {
 let geoCoder = nodeGeocoder(options);
 
 app.use((req, res, next) => {	// app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
   res.header("Access-Control-Allow-Origin", "*");	//   res.setHeader('Access-Control-Allow-Origin', '*');
   next();	
 });
