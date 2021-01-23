@@ -12,14 +12,14 @@ const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://Shantanu:bb0pD4SFebUd72gd@cluster0-fzxvj.mongodb.net/<dbname>?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true });
 var ObjectId = require('mongodb').ObjectId; 
-// var cors = require('cors')
+var cors = require('cors')
 var bodyParser = require('body-parser')
 
 var jsonParser = bodyParser.json({limit: '50mb'})
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
-// app.use(cors())
+app.use(cors())
 
 // client.connect(err => {
 //   const collection = client.db("test").collection("devices");
